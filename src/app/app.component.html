@@ -1,0 +1,84 @@
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+  <span>Primax</span>
+    <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+
+  <!-- Highlight Card -->
+
+
+  <!-- Resources -->
+  <h2>{{walletDir == '' ? "Wallet" : "Wallet : "  + walletDir}}</h2>
+
+  <div class="card-container">
+
+    <mat-card fxFlex="1 1 95%" class="mat-elevation-z15">
+      <form (keydown.enter)="$event.preventDefault()" fxLayout="column" [formGroup]="group">
+
+        <div class="seccion-ficha">
+          <mat-toolbar class="seccion-ficha-titulo">
+            <span>COMPRAR GASOLINA</span>
+          </mat-toolbar>
+
+
+          <div class="seccion-ficha-contenido" fxLayout="row" fxLayoutAlign="center">
+            <div fxLayout fxLayoutAlign="space-between" >
+
+              <mat-form-field class="col-sm-6" fxFlex appearance="outline">
+                <mat-label>Selecciona Gasolina</mat-label>
+                <mat-select matInput
+                    formControlName="codigoGasolina"
+                    (selectionChange)="onChangeTipoGasolina($event.value)">
+                    <mat-option value="1">GLP</mat-option>
+                    <mat-option value="2">GPRIX-PREMIUM</mat-option>
+                    <mat-option value="3">GPRIX-REGULAR</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+
+
+              <div fxLayout fxLayoutAlign="space-between" >
+
+                <mat-form-field class="col-sm-8" fxFlex appearance="outline"  floatLabel="always">
+                  <mat-label>Ingresar cantidad (Galones)</mat-label>
+                  <input matInput placeholder=""  type="number" min="0" (change)="onChangeCantidad()"
+                      formControlName="cantidad" />
+                </mat-form-field>
+              </div>
+
+              <div fxLayout fxLayoutAlign="space-between" >
+
+                <p>{{PrecioTotal == 0 ? "" : "Resumen: "  + Cantidad.value + " galones "  + "por " + PrecioTotal + " EPJ"}}</p>
+
+              </div>
+
+              <div fxLayout fxLayoutAlign="space-between" >
+
+                <button class="card card-small" (click)="connectToMetamask()" tabindex="0">
+                  <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                  <span>{{walletDir == '' ? "Conectar cartera" : "Seleccione un producto"}}</span>
+                </button>
+              </div>
+          </div>
+
+        </div>
+
+      </form>
+    </mat-card>
+
+
+
+  </div>
+
+
+<router-outlet></router-outlet>
